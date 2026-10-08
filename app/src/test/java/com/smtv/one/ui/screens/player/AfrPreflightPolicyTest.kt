@@ -66,7 +66,7 @@ class AfrPreflightPolicyTest {
     @Test
     fun `preflight header pipeline matches NextLib and extractor contracts`() {
         val incoming = mapOf(
-            "User-Agent" to "NuvioTV/0.7",
+            "User-Agent" to "smTV/0.7",
             "Range" to "bytes=0-65535",
             "Authorization" to "Bearer debrid-token"
         )
@@ -90,7 +90,7 @@ class AfrPreflightPolicyTest {
         // Extractor path keeps auth + Connection: close
         assertEquals("Bearer debrid-token", probeHeaders["Authorization"])
         assertEquals("close", probeHeaders["Connection"])
-        assertEquals("NuvioTV/0.7", probeHeaders["User-Agent"])
+        assertEquals("smTV/0.7", probeHeaders["User-Agent"])
     }
 
     @Test

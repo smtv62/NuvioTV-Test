@@ -69,7 +69,7 @@ class OkHttpMdbListEngine(
         }.build()
         return Request.Builder().url(url)
             .header("Accept", "application/json")
-            .header("User-Agent", "NuvioTV/${configuration.appVersion}")
+            .header("User-Agent", "smTV/${configuration.appVersion}")
             .apply {
                 request.accessToken?.let { header("Authorization", "Bearer $it") }
                 when (request.method) {

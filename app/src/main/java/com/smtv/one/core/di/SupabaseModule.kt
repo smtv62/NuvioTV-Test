@@ -48,7 +48,7 @@ object SupabaseModule {
     fun provideSupabaseClient(
         serverConfiguration: ServerConfiguration
     ): SupabaseClient = runBlocking(Dispatchers.IO) {
-        val userAgent = "NuvioTV/${BuildConfig.VERSION_NAME.ifBlank { "dev" }}"
+        val userAgent = "smTV/${BuildConfig.VERSION_NAME.ifBlank { "dev" }}"
         val rateLimitCoordinator = BackendRateLimitCoordinator()
         createSupabaseClient(
             supabaseUrl = serverConfiguration.backendUrl,

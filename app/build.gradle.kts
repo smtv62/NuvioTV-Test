@@ -150,9 +150,9 @@ android {
         // Uzak eklenti senkronizasyonu (Supabase RPC) - kisisel fork icin kapali
         buildConfigField("boolean", "REMOTE_PLUGIN_SYNC_ENABLED", "false")
 
-        // In-app updater (GitHub Releases)
-        buildConfigField("String", "GITHUB_OWNER", "\"NuvioMedia\"")
-        buildConfigField("String", "GITHUB_REPO", "\"NuvioTV\"")
+        // In-app updater (GitHub Releases) - kisisel fork deposu
+        buildConfigField("String", "GITHUB_OWNER", "\"manitux-app\"")
+        buildConfigField("String", "GITHUB_REPO", "\"NuvioTV-Test\"")
     }
 
     flavorDimensions += "distribution"

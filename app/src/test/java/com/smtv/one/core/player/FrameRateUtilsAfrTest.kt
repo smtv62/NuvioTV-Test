@@ -83,7 +83,7 @@ class FrameRateUtilsAfrTest {
     fun `synthetic headers alone do not block NextLib — UA Connection Range`() {
         assertFalse(
             "User-Agent alone must not block NextLib (0.7.10 parity regression)",
-            FrameRateUtils.hasNextLibBlockingHeaders(mapOf("User-Agent" to "NuvioTV/1.0"))
+            FrameRateUtils.hasNextLibBlockingHeaders(mapOf("User-Agent" to "smTV/1.0"))
         )
         assertFalse(
             FrameRateUtils.hasNextLibBlockingHeaders(mapOf("Connection" to "close"))
@@ -94,7 +94,7 @@ class FrameRateUtilsAfrTest {
         assertFalse(
             FrameRateUtils.hasNextLibBlockingHeaders(
                 mapOf(
-                    "User-Agent" to "NuvioTV/1.0",
+                    "User-Agent" to "smTV/1.0",
                     "Connection" to "close",
                     "Range" to "bytes=0-"
                 )
