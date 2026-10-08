@@ -1,4 +1,4 @@
-package com.nuvio.tv.baselineprofile
+package com.smtv.one.baselineprofile
 
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -21,7 +21,7 @@ class BaselineProfileGenerator {
 
     @Test
     fun generate() {
-        val targetPackage = "com.nuvio.tv"
+        val targetPackage = "com.smtv.one"
         rule.collect(
             packageName = targetPackage,
             includeInStartupProfile = true

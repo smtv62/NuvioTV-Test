@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.nuvio.tv.baselineprofile"
+    namespace = "com.smtv.one.baselineprofile"
     compileSdk = 36
 
     defaultConfig {

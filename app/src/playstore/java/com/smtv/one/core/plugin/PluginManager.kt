@@ -1,0 +1,91 @@
+package com.smtv.one.core.plugin
+
+import com.smtv.one.domain.model.LocalScraperResult
+import com.smtv.one.domain.model.PluginRepository
+import com.smtv.one.domain.model.PluginSourceRef
+import com.smtv.one.domain.model.PluginContentRef
+import com.smtv.one.domain.model.PluginCommentsPage
+import com.smtv.one.domain.model.RemotePluginInfo
+import com.smtv.one.domain.model.ScraperInfo
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flowOf
+import javax.inject.Singleton
+
+@Singleton
+class PluginManager {
+    val repositories: Flow<List<PluginRepository>> = flowOf(emptyList())
+    val scrapers: Flow<List<ScraperInfo>> = flowOf(emptyList())
+    val pluginsEnabled: Flow<Boolean> = flowOf(false)
+    val groupStreamsByRepository: Flow<Boolean> = flowOf(false)
+    val enabledScrapers: Flow<List<ScraperInfo>> = flowOf(emptyList())
+
+    var isSyncingFromRemote: Boolean = false
+
+    fun flushPendingSync() = Unit
+
+    suspend fun installDefaultRepositoriesIfNeeded() = Unit
+
+    suspend fun addRepository(manifestUrl: String): Result<PluginRepository> =
+        Result.failure(UnsupportedOperationException("Plugins are not available in this build."))
+
+    suspend fun removeRepository(repoId: String) = Unit
+
+    suspend fun reconcileWithRemoteRepoUrls(
+        remotePlugins: List<RemotePluginInfo>,
+        removeMissingLocal: Boolean = true
+    ) = Unit
+
+    @JvmName("reconcileWithRemoteRepoUrlStrings")
+    suspend fun reconcileWithRemoteRepoUrls(
+        remoteUrls: List<String>,
+        removeMissingLocal: Boolean = true
+    ) = Unit
+
+    suspend fun refreshRepository(repoId: String): Result<Unit> =
+        Result.failure(UnsupportedOperationException("Plugins are not available in this build."))
+
+    suspend fun toggleScraper(scraperId: String, enabled: Boolean) = Unit
+
+    suspend fun toggleAllScrapersForRepo(repoId: String, enabled: Boolean) = Unit
+
+    suspend fun setPluginsEnabled(enabled: Boolean) = Unit
+
+    suspend fun setGroupStreamsByRepository(enabled: Boolean) = Unit
+
+    suspend fun executeScrapers(
+        tmdbId: String,
+        mediaType: String,
+        season: Int? = null,
+        episode: Int? = null
+    ): List<LocalScraperResult> = emptyList()
+
+    fun executeScrapersStreaming(
+        tmdbId: String,
+        mediaType: String,
+        season: Int? = null,
+        episode: Int? = null,
+        scraperId: String? = null,
+        repositoryId: String? = null,
+        contentUrl: String? = null,
+        contentUrlScraperId: String? = null,
+        contentSource: PluginSourceRef? = null
+    ): Flow<Pair<ScraperInfo, List<LocalScraperResult>>> = emptyFlow()
+
+    suspend fun executeScraper(
+        scraper: ScraperInfo,
+        tmdbId: String,
+        mediaType: String,
+        season: Int?,
+        episode: Int?
+    ): List<LocalScraperResult> = emptyList()
+
+    suspend fun executeComments(
+        content: PluginContentRef,
+        pageToken: String? = null,
+        language: String? = null
+    ): PluginCommentsPage = PluginCommentsPage(emptyList())
+
+    suspend fun testScraper(scraperId: String): Result<Pair<List<LocalScraperResult>, TestDiagnostics>> =
+        Result.failure(UnsupportedOperationException("Plugins are not available in this build."))
+}

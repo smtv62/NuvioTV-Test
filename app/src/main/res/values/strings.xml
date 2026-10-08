@@ -3367,4 +3367,18 @@
     <string name="shuffle_save_failed">Could not update shuffle. Try again.</string>
     <string name="shuffle_change_selection">Choose episodes</string>
     <string name="shuffle_badge">Episode shuffle enabled</string>
+
+    <!-- Subtitle AutoSync (varsayilan/Ingilizce degerleri repoda eksikti) -->
+    <string name="autosync_setting_title">Auto-sync subtitles</string>
+    <string name="autosync_setting_description">Matches the selected addon subtitle to the embedded subtitle timings.</string>
+    <string name="autosync_tolerance_title">Auto-sync tolerance</string>
+    <string name="autosync_tolerance_description">Keeps the original timing when the required correction is at or below this value.</string>
+    <string name="autosync_tolerance_off">Off</string>
+    <string name="autosync_tolerance_value">%1$d ms</string>
+    <string name="autosync_thorough_title">Thorough auto-sync search</string>
+    <string name="autosync_thorough_description">Keeps comparing other subtitles and embedded tracks for a closer match before syncing. When off, the first strong match is used for speed. Only trusted matches are applied.</string>
+    <string name="autosync_toast_failed">Sync failed: Auto-sync could not match this subtitle to the video.</string>
+    <string name="autosync_toast_failed_no_reference">Sync failed: This video has no embedded subtitle to match against.</string>
+    <string name="autosync_toast_failed_unsupported">Sync failed: Auto-sync does not support this subtitle format.</string>
+    <string name="autosync_label_synced">Auto-synced</string>
 </resources>
