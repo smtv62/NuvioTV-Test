@@ -52,6 +52,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Tv
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -153,6 +154,7 @@ import com.smtv.one.data.local.AppOnboardingDataStore
 import com.smtv.one.data.local.AuthSessionNoticeDataStore
 import com.smtv.one.data.local.ExperienceModeDataStore
 import com.smtv.one.data.local.LayoutPreferenceDataStore
+import com.smtv.one.data.local.LiveTvPreferences
 import com.smtv.one.data.local.StartupAuthNotice
 import com.smtv.one.data.local.ThemeDataStore
 import com.smtv.one.data.repository.MemberAccessRepository
@@ -210,6 +212,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -268,6 +271,9 @@ open class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var layoutPreferenceDataStore: LayoutPreferenceDataStore
+
+    @Inject
+    lateinit var liveTvPreferences: LiveTvPreferences
 
     @Inject
     lateinit var experienceModeDataStore: ExperienceModeDataStore
@@ -865,6 +871,24 @@ open class MainActivity : ComponentActivity() {
                         optimisticRoute = null
                     }
 
+                    // Canlı TV: "Açılışta son kanal" açıksa normal açılışta son
+                    // kanalı otomatik başlat (ilk kurulum akışlarında tetiklenmez).
+                    var liveTvAutoStartChecked by remember { mutableStateOf(false) }
+                    LaunchedEffect(actualRoute, startDestination) {
+                        if (liveTvAutoStartChecked) return@LaunchedEffect
+                        if (startDestination != Screen.Home.route || actualRoute != Screen.Home.route) {
+                            return@LaunchedEffect
+                        }
+                        liveTvAutoStartChecked = true
+                        val autoStart = liveTvPreferences.autoStartOnLaunch.first()
+                        if (!autoStart) return@LaunchedEffect
+                        if (liveTvPreferences.lastChannelId.first().isBlank()) return@LaunchedEffect
+                        delay(600)
+                        navController.navigate(Screen.LiveTv.route) {
+                            launchSingleTop = true
+                        }
+                    }
+
                     // Auto-play next episode for EXTERNAL players: the tracker resolves the
                     // next episode and we navigate into the same Screen.Stream auto-play route
                     // the internal onPlaybackEnded path uses. Collected from the root composable
@@ -1030,6 +1054,7 @@ open class MainActivity : ComponentActivity() {
                         buildSet {
                             add(Screen.Home.route)
                             add(Screen.Search.route)
+                            add(Screen.LiveTv.route)
                             add(Screen.Library.route)
                             add(Screen.Settings.route)
                             if (discoverLocation == DiscoverLocation.IN_SIDEBAR) {
@@ -1041,12 +1066,14 @@ open class MainActivity : ComponentActivity() {
                     val strNavHome = stringResource(R.string.nav_home)
                     val strNavDiscover = stringResource(R.string.nav_discover)
                     val strNavSearch = stringResource(R.string.nav_search)
+                    val strNavLiveTv = stringResource(R.string.nav_live_tv)
                     val strNavLibrary = stringResource(R.string.nav_library)
                     val strNavSettings = stringResource(R.string.nav_settings)
                     val drawerItems = remember(
                         strNavHome,
                         strNavDiscover,
                         strNavSearch,
+                        strNavLiveTv,
                         strNavLibrary,
                         strNavSettings,
                         discoverLocation
@@ -1073,6 +1100,13 @@ open class MainActivity : ComponentActivity() {
                                     route = Screen.Search.route,
                                     label = strNavSearch,
                                     iconRes = R.raw.sidebar_search
+                                )
+                            )
+                            add(
+                                DrawerItem(
+                                    route = Screen.LiveTv.route,
+                                    label = strNavLiveTv,
+                                    icon = Icons.Default.Tv
                                 )
                             )
                             add(

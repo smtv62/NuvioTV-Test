@@ -32,6 +32,7 @@ import com.smtv.one.ui.screens.home.HomeScreen
 import com.smtv.one.ui.screens.addon.AddonManagerScreen
 import com.smtv.one.ui.screens.addon.CatalogOrderScreen
 import com.smtv.one.ui.screens.library.LibraryScreen
+import com.smtv.one.ui.screens.livetv.LiveTvScreen
 import com.smtv.one.ui.screens.player.PlayerExitReason
 import com.smtv.one.ui.screens.player.PlayerScreen
 import com.smtv.one.ui.screens.player.PostPlayRecommendation
@@ -1226,6 +1227,10 @@ private fun PlaybackNavHost(
                     )
                 }
             )
+        }
+
+        composable(Screen.LiveTv.route) {
+            LiveTvScreen()
         }
 
         composable(Screen.Settings.route) {
