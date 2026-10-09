@@ -246,6 +246,7 @@ class AddonPreferences @Inject constructor(
     )
 
     internal fun getDefaultPlugins(): Set<String>? = setOf(
+        "https://raw.githubusercontent.com/smtv62/smtv-plugins/refs/heads/main/manifest.json",
         "https://raw.githubusercontent.com/manitux-app/nuvio-plugins/refs/heads/main/manifest.json",
         "https://izlelan.com/manifest.json",
         "https://raw.githubusercontent.com/patr0nq/nuvioaddons/refs/heads/main/manifest.json"
