@@ -123,6 +123,7 @@ fun HomeScreen(
     onContinueWatchingPlayManually: (ContinueWatchingItem) -> Unit = onContinueWatchingClick,
     onNavigateToCatalogSeeAll: (String, String, String) -> Unit = { _, _, _ -> },
     onNavigateToFolderDetail: (String, String) -> Unit = { _, _ -> },
+    // Retained for the nav host wiring; the Home Catalog/Source bar that used it is gone.
     onNavigateToCatalogSearch: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -496,18 +497,9 @@ fun HomeScreen(
                 )
             }
         }
-        HomeSourceMenus(
-            uiState = uiState,
-            onCatalogSelected = viewModel::selectHomeCatalogSource,
-            onStreamSelected = viewModel::selectHomeStreamSource,
-            onCatalogRepositoryFilterSelected = viewModel::selectHomeCatalogRepositoryFilter,
-            onStreamRepositoryFilterSelected = viewModel::selectHomeStreamRepositoryFilter,
-            onCatalogSearch = {
-                uiState.selectedCatalogSourceId?.let(HomeCatalogSearchScope::open)
-                onNavigateToCatalogSearch()
-            },
-            modifier = Modifier.align(Alignment.TopEnd).padding(24.dp)
-        )
+        // Catalog/Source selection bar intentionally removed: sources are baked into the
+        // build (smTV Plugins + HDFilmCehennemi), so there is nothing for the user to pick.
+        // Home keeps using its persisted catalog selection / "all" stream default.
     }
 
     val selectedPoster = posterOptionsTarget

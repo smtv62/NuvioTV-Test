@@ -125,6 +125,19 @@ private sealed interface AddonExperienceModeState {
     data class Loaded(val mode: ExperienceMode?) : AddonExperienceModeState
 }
 
+/**
+ * Hosts of catalog addons that ship pre-installed (see AddonPreferences.getDefaultAddons).
+ * They are hidden from the manager because the user never adds or removes them — the app
+ * bundles its own catalog sources. They stay installed and keep driving Home rows + search.
+ *
+ * Scope note: this only covers catalog *addons*. Plugin repositories (e.g. izlelan.com as a
+ * scraper repo) live on the separate Plugins screen and are intentionally untouched here.
+ */
+private val HIDDEN_BUNDLED_ADDON_HOSTS = listOf(
+    "catalog.nuvio.tv",   // Nuvio Catalog Addon -> TMDB-backed search rows
+    "katalog.izlelan.com" // izlelan -> "Popüler - Movie" / "Popüler - Series" home rows
+)
+
 @OptIn(ExperimentalTvMaterial3Api::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
 @Composable
 fun AddonManagerScreen(
@@ -165,8 +178,21 @@ fun AddonManagerScreen(
     val deleteDialogFocusRequester = remember { FocusRequester() }
     var isEditing by remember { mutableStateOf(false) }
     var addonUrlPendingDeletion by remember { mutableStateOf<String?>(null) }
-    val hasHomeVisibleCatalogs = remember(uiState.installedAddons) {
-        uiState.installedAddons.any { addon ->
+    // Bundled catalog addons are hidden from the manager. They are pre-installed and their
+    // URLs are curated in AddonPreferences, so the user has nothing to add or remove here.
+    // Hiding is purely presentational: the addons stay installed and keep feeding Home rows
+    // and search results. Everything else (logic, reorder, sync) still sees the full list.
+    //
+    // Matched on host substring rather than exact URL: AddonRepositoryImpl.canonicalizeUrl()
+    // strips "/manifest.json" and trailing slashes, so the stored baseUrl never equals the
+    // raw URL in AddonPreferences.
+    val displayedAddons = remember(uiState.installedAddons) {
+        uiState.installedAddons.filterNot { addon ->
+            HIDDEN_BUNDLED_ADDON_HOSTS.any { host -> addon.baseUrl.contains(host) }
+        }
+    }
+    val hasHomeVisibleCatalogs = remember(displayedAddons) {
+        displayedAddons.any { addon ->
             addon.enabled && addon.catalogs.any { catalog -> !catalog.isSearchOnlyCatalog() }
         }
     }
@@ -465,7 +491,7 @@ fun AddonManagerScreen(
                 }
             }
 
-            if (uiState.installedAddons.isEmpty() && !uiState.isLoading) {
+            if (displayedAddons.isEmpty() && !uiState.isLoading) {
                 item {
                     Text(
                         text = stringResource(R.string.addon_empty),
@@ -475,7 +501,7 @@ fun AddonManagerScreen(
                 }
             } else {
                 itemsIndexed(
-                    items = uiState.installedAddons,
+                    items = displayedAddons,
                     key = { _, addon -> addon.baseUrl }
                 ) { index, addon ->
                     val bringIntoViewRequester = remember { BringIntoViewRequester() }
@@ -483,7 +509,7 @@ fun AddonManagerScreen(
                         modifier = Modifier.bringIntoViewRequester(bringIntoViewRequester),
                         addon = addon,
                         canMoveUp = index > 0,
-                        canMoveDown = index < uiState.installedAddons.lastIndex,
+                        canMoveDown = index < displayedAddons.lastIndex,
                         onMoveUp = {
                             viewModel.moveAddonUp(addon.baseUrl)
                             addonListScope.launch {
