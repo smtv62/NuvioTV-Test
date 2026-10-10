@@ -407,6 +407,18 @@ class AddonRepositoryImpl(
         }
     }
 
+    /**
+     * Restores the bundled catalog addons (Nuvio Catalog) if the user removed them.
+     *
+     * These are hidden from the Addons screen, so once deleted there is no way to re-add them by
+     * hand — the app re-installs them on startup. Without this, removing them leaves Home and
+     * Search showing "no catalogs". Called after remote reconciliation so a remote sync can never
+     * permanently strip the bundled addons.
+     */
+    suspend fun restoreBundledAddonsIfMissing() {
+        preferences.ensureMigrated()
+    }
+
     private fun placeholderAddon(
         url: String,
         userSetNames: Map<String, String>,

@@ -292,17 +292,38 @@ class PluginManager @Inject constructor(
     private var syncJob: kotlinx.coroutines.Job? = null
 
     /**
-     * Default plugin repositories need to be installed through this manager so their manifests,
-     * scraper metadata and code are all stored together. An explicitly saved empty list remains
-     * empty, allowing users to remove every repository without defaults returning on next launch.
+     * Installs the bundled default repository and makes sure it stays installed.
+     *
+     * The first run still installs every default, but afterwards this no longer becomes a no-op:
+     * it re-checks that the bundled smTV repo survived. If the user removed it (which deletes the
+     * HDFilmCehennemi scraper and makes every movie/episode report "no stream source"), it is
+     * restored automatically on the next launch. Only the bundled repo is healed — repositories the
+     * user added by hand stay removable.
      */
     suspend fun installDefaultRepositoriesIfNeeded() {
         profileManager.activeProfileReady.first { it }
         val activeProfile = profileManager.activeProfile
         val targetProfileId = if (activeProfile?.usesPrimaryPlugins == true) 1 else profileManager.activeProfileId.value
-        if (dataStore.hasInitializedDefaultRepositories(targetProfileId)) return
-
         val defaultUrls = addonPreferences.getDefaultPlugins() ?: return
+        val bundledUrl = AddonPreferences.BUNDLED_PLUGIN_REPOSITORY_URL
+        val alreadyInitialized = dataStore.hasInitializedDefaultRepositories(targetProfileId)
+
+        if (alreadyInitialized) {
+            val existing = dataStore.getRepositories(targetProfileId)
+            val bundledMissing = defaultUrls.any { wanted ->
+                existing.none { normalizeUrl(it.url) == normalizeUrl(wanted) }
+            }
+            // Healing path: addRepository() already persists each repo, so we only top up the
+            // missing bundled repo and never rewrite the whole list — a wholesale saveRepositories()
+            // here would wipe repositories the user added by hand.
+            if (!bundledMissing) return
+            Log.w(TAG, "Bundled plugin repository missing — restoring $bundledUrl")
+            val restore = addRepository(bundledUrl, targetProfileId)
+            restore.onFailure { Log.w(TAG, "Failed to restore bundled repository", it) }
+                .onSuccess { Log.i(TAG, "Bundled repository restored id=${it.id}") }
+            return
+        }
+
         Log.i(
             TAG,
             "Installing ${defaultUrls.size} default plugin repositories for profile " +
@@ -320,6 +341,9 @@ class PluginManager @Inject constructor(
             )
             result
         }
+        // First install only: addRepository() has already persisted each repo, so this final save
+        // is just normalizing order. It is skipped once initialized so it can never clobber a list
+        // the user has edited.
         if (installationResults.all { it.isSuccess }) {
             dataStore.saveRepositories(
                 installationResults.map { it.getOrThrow() },
@@ -535,6 +559,13 @@ class PluginManager @Inject constructor(
     suspend fun removeRepository(repoId: String) {
         val scraperList = dataStore.scrapers.first()
         val repo = dataStore.getRepositories().find { it.id == repoId }
+
+        // The bundled repo carries the HDFilmCehennemi provider. Removing it breaks stream
+        // discovery for every title, so it is not user-removable — only disable-able.
+        if (repo != null && normalizeUrl(repo.url) == normalizeUrl(AddonPreferences.BUNDLED_PLUGIN_REPOSITORY_URL)) {
+            Log.w(TAG, "removeRepository: refused — bundled repository $repoId is not removable")
+            return
+        }
 
         // Remove all scrapers from this repo
         scraperList.filter { it.repositoryId == repoId }.forEach { scraper ->

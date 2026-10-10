@@ -116,6 +116,13 @@ class StartupSyncService @Inject constructor(
                         pendingResyncKey = null
                         pendingResyncIncludesProfileSettings = false
                         pluginManager.installDefaultRepositoriesIfNeeded()
+                        // Signed-out users never hit the remote reconcile path, so the bundled
+                        // catalog addon must be healed here too or Home/Search stay empty.
+                        try {
+                            addonRepository.restoreBundledAddonsIfMissing()
+                        } catch (e: Exception) {
+                            Log.e(TAG, "Failed to restore bundled addons (signed out)", e)
+                        }
                     }
                     is AuthState.Loading -> Unit
                 }
@@ -606,6 +613,13 @@ class StartupSyncService @Inject constructor(
                     Log.e(TAG, "Failed to pull addons from remote, keeping local cache", e)
                 } finally {
                     addonRepository.isSyncingFromRemote = false
+                    // Reconciliation may have removed local addons that were missing remotely.
+                    // The bundled catalog addon must survive, or Home/Search lose all their rows.
+                    try {
+                        addonRepository.restoreBundledAddonsIfMissing()
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Failed to restore bundled addons", e)
+                    }
                 }
             }
 

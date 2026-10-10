@@ -25,6 +25,14 @@ class AddonPreferences @Inject constructor(
 ) {
     companion object {
         private const val FEATURE = "addon_preferences"
+
+        /**
+         * The one plugin repository the app cannot work without. It carries the HDFilmCehennemi
+         * provider, so losing it means "no stream source found" on every movie and episode.
+         * Exposed so PluginManager can guard it against removal and self-heal if it goes missing.
+         */
+        const val BUNDLED_PLUGIN_REPOSITORY_URL =
+            "https://raw.githubusercontent.com/smtv62/smtv-plugins/refs/heads/main/manifest.json"
     }
 
     private fun effectiveProfileId(): Int {
@@ -92,6 +100,28 @@ class AddonPreferences @Inject constructor(
                 preferences[orderedUrlsKey] = gson.toJson(legacySet.toList())
                 preferences.remove(legacyUrlsKey)
             }
+        }
+        ensureBundledCatalogAddons()
+    }
+
+    /**
+     * Re-installs the bundled catalog addon if it went missing.
+     *
+     * The Nuvio Catalog addon is the only source of Home rows and search results — without it the
+     * app shows "no catalogs" everywhere. Since it is hidden from the Addons screen (see
+     * AddonManagerScreen.HIDDEN_BUNDLED_ADDON_HOSTS), the user cannot re-add it by hand, so the
+     * app restores it on launch. Addons the user installed themselves are never touched.
+     */
+    private suspend fun ensureBundledCatalogAddons() {
+        val ds = store()
+        val prefs = ds.data.first()
+        val current = getCurrentList(prefs)
+        val missing = getDefaultAddons().filter { wanted ->
+            current.none { canonicalizeUrl(it).equals(canonicalizeUrl(wanted), ignoreCase = true) }
+        }
+        if (missing.isEmpty()) return
+        ds.edit { preferences ->
+            preferences[orderedUrlsKey] = gson.toJson(current + missing)
         }
     }
 
@@ -242,13 +272,15 @@ class AddonPreferences @Inject constructor(
         // https://v3-cinemeta.strem.io/manifest.json
         "https://opensubtitles-v3.strem.io",
         "https://catalog.nuvio.tv/{\"language\":\"tr-TR\",\"region\":\"TR\"}",
-        "https://katalog.izlelan.com/manifest.json",
     )
 
+    /**
+     * Only smTV Plugins ships by default. Every provider the app needs (HDFilmCehennemi for
+     * movies/series streams) lives in that one repo, so bundling third-party repos just adds
+     * sources the user never asked for — and the old manitux-app repo pointed at a dead domain,
+     * which surfaced as broken providers on a fresh install.
+     */
     internal fun getDefaultPlugins(): Set<String>? = setOf(
-        "https://raw.githubusercontent.com/smtv62/smtv-plugins/refs/heads/main/manifest.json",
-        "https://raw.githubusercontent.com/manitux-app/nuvio-plugins/refs/heads/main/manifest.json",
-        "https://izlelan.com/manifest.json",
-        "https://raw.githubusercontent.com/patr0nq/nuvioaddons/refs/heads/main/manifest.json"
+        BUNDLED_PLUGIN_REPOSITORY_URL,
     )
 }

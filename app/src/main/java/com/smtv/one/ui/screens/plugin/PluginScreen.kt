@@ -95,6 +95,7 @@ import androidx.tv.material3.SwitchDefaults
 import androidx.tv.material3.Text
 import com.smtv.one.domain.model.LocalScraperResult
 import com.smtv.one.domain.model.PluginRepository
+import com.smtv.one.data.local.AddonPreferences
 import com.smtv.one.domain.model.ScraperInfo
 import com.smtv.one.ui.components.LoadingIndicator
 import kotlinx.coroutines.delay
@@ -1087,6 +1088,11 @@ private fun RepositoryCard(
     val enabledCount = repoScrapers.count { it.enabled }
     val allEnabled = repoScrapers.isNotEmpty() && enabledCount == repoScrapers.size
     val anyEnabled = enabledCount > 0
+    // The bundled repo (smTV Plugins) carries the only stream provider, so it is never removable.
+    // The delete button is hidden entirely rather than shown disabled, to keep the card clean.
+    val isBundledRepo = remember(repository.url) {
+        repository.url.trimEnd('/') == AddonPreferences.BUNDLED_PLUGIN_REPOSITORY_URL.trimEnd('/')
+    }
     var isToggleFocused by remember { mutableStateOf(false) }
     var isRefreshFocused by remember { mutableStateOf(false) }
     var isRemoveFocused by remember { mutableStateOf(false) }
@@ -1211,24 +1217,28 @@ private fun RepositoryCard(
                     )
                 }
 
-                Button(
-                    onClick = onRemove,
-                    enabled = !isLoading,
-                    modifier = Modifier
-                        .onFocusChanged { isRemoveFocused = it.isFocused }
-                        .semantics { role = Role.Button },
-                    colors = ButtonDefaults.colors(
-                        containerColor = NuvioTheme.colors.Surface,
-                        contentColor = NuvioTheme.colors.TextSecondary,
-                        focusedContainerColor = NuvioTheme.colors.FocusBackground,
-                        focusedContentColor = NuvioTheme.colors.Error
-                    ),
-                    shape = ButtonDefaults.shape(RoundedCornerShape(NuvioTheme.radii.md))
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = stringResource(R.string.cd_remove)
-                    )
+                // The bundled repo is not removable, so its delete button is omitted entirely
+                // instead of being rendered disabled — PluginManager refuses the removal anyway.
+                if (!isBundledRepo) {
+                    Button(
+                        onClick = onRemove,
+                        enabled = !isLoading,
+                        modifier = Modifier
+                            .onFocusChanged { isRemoveFocused = it.isFocused }
+                            .semantics { role = Role.Button },
+                        colors = ButtonDefaults.colors(
+                            containerColor = NuvioTheme.colors.Surface,
+                            contentColor = NuvioTheme.colors.TextSecondary,
+                            focusedContainerColor = NuvioTheme.colors.FocusBackground,
+                            focusedContentColor = NuvioTheme.colors.Error
+                        ),
+                        shape = ButtonDefaults.shape(RoundedCornerShape(NuvioTheme.radii.md))
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = stringResource(R.string.cd_remove)
+                        )
+                    }
                 }
             }
         }
