@@ -52,6 +52,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.Tv
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -1055,6 +1056,7 @@ open class MainActivity : ComponentActivity() {
                             add(Screen.Home.route)
                             add(Screen.Search.route)
                             add(Screen.LiveTv.route)
+                            add(Screen.Sports.route)
                             add(Screen.Library.route)
                             add(Screen.Settings.route)
                             if (discoverLocation == DiscoverLocation.IN_SIDEBAR) {
@@ -1067,6 +1069,7 @@ open class MainActivity : ComponentActivity() {
                     val strNavDiscover = stringResource(R.string.nav_discover)
                     val strNavSearch = stringResource(R.string.nav_search)
                     val strNavLiveTv = stringResource(R.string.nav_live_tv)
+                    val strNavSpor = stringResource(R.string.nav_spor)
                     val strNavLibrary = stringResource(R.string.nav_library)
                     val strNavSettings = stringResource(R.string.nav_settings)
                     val drawerItems = remember(
@@ -1074,6 +1077,7 @@ open class MainActivity : ComponentActivity() {
                         strNavDiscover,
                         strNavSearch,
                         strNavLiveTv,
+                        strNavSpor,
                         strNavLibrary,
                         strNavSettings,
                         discoverLocation
@@ -1107,6 +1111,13 @@ open class MainActivity : ComponentActivity() {
                                     route = Screen.LiveTv.route,
                                     label = strNavLiveTv,
                                     icon = Icons.Default.Tv
+                                )
+                            )
+                            add(
+                                DrawerItem(
+                                    route = Screen.Sports.route,
+                                    label = strNavSpor,
+                                    icon = Icons.Default.SportsSoccer
                                 )
                             )
                             add(

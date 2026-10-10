@@ -2406,6 +2406,12 @@
     <string name="livetv_group_all">Tümü</string>
     <string name="livetv_group_favorites">Favoriler</string>
     <string name="livetv_live">CANLI</string>
+<string name="nav_spor">Spor</string>
+<string name="spor_all">Tümü</string>
+<string name="spor_hints">OK: yayın başlat · BACK: menü · izlerken liste gizlenir</string>
+<string name="spor_source_format">%1$s · %2$d/%3$d</string>
+<string name="spor_no_stream">Çalışan kaynak bulunamadı — yeniden deneniyor…</string>
+<string name="spor_source_empty">Bu kaynakta kanal yok</string>
     <string name="livetv_live_broadcast">CANLI YAYIN</string>
     <string name="livetv_empty_title">Kanal bulunamadı</string>
     <string name="livetv_empty_body">Liste yüklenemedi. Yenile\'ye basıp tekrar deneyin.</string>

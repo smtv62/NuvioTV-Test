@@ -2413,6 +2413,7 @@
     <string name="nav_search">Search</string>
     <string name="nav_library">Library</string>
     <string name="nav_live_tv">Live TV</string>
+<string name="nav_spor">Sports</string>
     <string name="livetv_refresh">Refresh channels</string>
     <string name="livetv_settings">Live TV settings</string>
     <string name="livetv_settings_title">Live TV settings</string>
@@ -2423,6 +2424,11 @@
     <string name="livetv_group_all">All</string>
     <string name="livetv_group_favorites">Favorites</string>
     <string name="livetv_live">LIVE</string>
+<string name="spor_all">All sources</string>
+<string name="spor_hints">OK: start broadcast · BACK: menu · list hides while watching</string>
+<string name="spor_source_format">%1$s · %2$d/%3$d</string>
+<string name="spor_no_stream">No working source — retrying…</string>
+<string name="spor_source_empty">No channels in this source</string>
     <string name="livetv_live_broadcast">LIVE BROADCAST</string>
     <string name="livetv_empty_title">No channels found</string>
     <string name="livetv_empty_body">The playlist could not be loaded. Press Refresh to try again.</string>
