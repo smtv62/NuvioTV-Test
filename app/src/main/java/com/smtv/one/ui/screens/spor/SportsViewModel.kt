@@ -101,6 +101,17 @@ class SportsViewModel @Inject constructor(
         _uiState.update { it.copy(selectedSourceId = sourceId) }
     }
 
+    /** Son otomatik (failover turu) yenileme ani; 60 sn alti tekrarlar elenir. */
+    private var lastAutoRefreshAt = 0L
+
+    /** Tum adaylar tukendiginde failover'in cagirdigi tur yenilemesi (throttle'li). */
+    fun autoRefreshThrottled() {
+        val now = SystemClock.elapsedRealtime()
+        if (now - lastAutoRefreshAt < 60_000L) return
+        lastAutoRefreshAt = now
+        refresh()
+    }
+
     fun preferredIndexFor(channelId: String?): Int =
         if (channelId == null) 0 else preferredCandidate[channelId] ?: 0
 

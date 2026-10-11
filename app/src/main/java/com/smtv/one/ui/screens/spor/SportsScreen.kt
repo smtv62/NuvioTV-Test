@@ -52,6 +52,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
@@ -72,6 +73,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.ui.AspectRatioFrameLayout
+import androidx.media3.ui.PlayerView
 import androidx.tv.material3.Border
 import androidx.tv.material3.Card
 import androidx.tv.material3.CardDefaults
@@ -227,15 +231,21 @@ fun SportsScreen() {
         handle.play(candidate?.url, candidate?.headers.orEmpty())
     }
 
-    // Aday hatasi: kisa bekleme sonrasi sonraki kaynaga gec (tumu bitene kadar).
+    // Aday hatasi: kisa bekleme sonrasi sonraki kaynaga gec. Kaynaklar donenici
+    // oldugu icin tur sonunda durma: tum adaylar bitince basa don, tam tur
+    // sonunda kaynaklari tazele (domain/URL donmus olabilir).
     LaunchedEffect(handle.errorCount) {
         val channel = currentChannel ?: return@LaunchedEffect
         if (handle.errorCount <= 0 || channel.candidates.size <= 1) return@LaunchedEffect
-        delay(2_500)
-        if (failAttempts + 1 < channel.candidates.size) {
-            failAttempts++
-            candidateIndex = (candidateIndex + 1) % channel.candidates.size
+        failAttempts++
+        // Tam tur atildi -> biraz bekle (tum kaynaklar olu olabilir), sonra tazele.
+        if (failAttempts % channel.candidates.size == 0) {
+            delay(10_000)
+            viewModel.autoRefreshThrottled()
+        } else {
+            delay(2_500)
         }
+        candidateIndex = (candidateIndex + 1) % channel.candidates.size
     }
 
     // Basarili oynatma: adayi tercih olarak hatirla.
@@ -487,6 +497,7 @@ private fun rememberChips(state: SportsUiState): List<String?> =
  * tamamen acilamazsa altta kirmizi ipucu.
  */
 @Composable
+@androidx.annotation.OptIn(markerClass = [UnstableApi::class])
 private fun SportsStage(
     handle: LiveTvPlayerHandle,
     channel: SportsChannel?,
@@ -501,6 +512,20 @@ private fun SportsStage(
     )
 
     Box(modifier.background(Color.Black)) {
+        // Canli yayin videosu: oynaticinin kendi yuzeyi tam ekranda.
+        // textureView XML'de ayarlandi: SurfaceView siyah katmani Compose
+        // overlay'lerini (hazirlik placeholder'i + hata metni) her zaman ezerdi.
+        AndroidView(
+            factory = { ctx ->
+                val view = android.view.LayoutInflater.from(ctx)
+                    .inflate(R.layout.sport_player_view, null, false) as PlayerView
+                view.player = handle.exoPlayer
+                view
+            },
+            update = { view -> view.player = handle.exoPlayer },
+            modifier = Modifier.fillMaxSize(),
+        )
+
         if (candidate == null) {
             // Liste henuz yuklenmedi: atmosfer isigi
             Box(

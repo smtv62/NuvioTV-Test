@@ -176,12 +176,15 @@ class SportsRepository @Inject constructor(
                 // Daha "duzgun" (uzun) gorunen adi tercih et: "BeIN Sports 1" > "beinsports1".
                 if (name.length > holder.name.length) holder.name = name
                 if (holder.logoUrl == null) holder.logoUrl = entry.logoUrl?.takeIf { it.isNotBlank() }
-                holder.candidates += SportsCandidate(
-                    sourceId = source.id,
-                    sourceName = source.name,
-                    url = entry.url,
-                    headers = entry.headers,
-                )
+                // Ayni kaynak ayni URL'yi iki kez listeliyorsa (yedek giris) tekrarlama:
+                if (holder.candidates.none { it.url == entry.url }) {
+                    holder.candidates += SportsCandidate(
+                        sourceId = source.id,
+                        sourceName = source.name,
+                        url = entry.url,
+                        headers = entry.headers,
+                    )
+                }
             }
         }
 

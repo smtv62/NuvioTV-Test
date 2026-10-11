@@ -1441,7 +1441,10 @@ private fun LegacySidebarScaffold(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val drawerItemFocusRequesters = rememberDrawerItemFocusRequesters(drawerItems)
     val keyboardController = androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
-    val showSidebar = currentRoute in rootRoutes
+    // Canli TV ve Spor tam ekran deneyimi: sidebar ray'i tamamen gizlenir.
+    val immersiveFullscreen =
+        currentRoute == Screen.LiveTv.route || currentRoute == Screen.Sports.route
+    val showSidebar = currentRoute in rootRoutes && !immersiveFullscreen
 
     LaunchedEffect(currentRoute) {
         longPressBackHeld.value = false
@@ -1449,7 +1452,7 @@ private fun LegacySidebarScaffold(
     }
 
     val sidebarTokens = NuvioComponents.tokens.sidebar
-    val closedDrawerWidth = if (sidebarCollapsed) NuvioTheme.spacing.none else sidebarTokens.legacyCollapsedWidth
+    val closedDrawerWidth = if (sidebarCollapsed || immersiveFullscreen) NuvioTheme.spacing.none else sidebarTokens.legacyCollapsedWidth
     val openDrawerWidth = sidebarTokens.legacyExpandedWidth
     val openDrawerItemWidth = sidebarTokens.itemWidth
 
@@ -1463,7 +1466,7 @@ private fun LegacySidebarScaffold(
     var legacyDrawerInteractionVersion by remember { mutableStateOf(0) }
 
 
-    BackHandler(enabled = currentRoute in rootRoutes && drawerState.currentValue == DrawerValue.Closed) {
+    BackHandler(enabled = showSidebar && drawerState.currentValue == DrawerValue.Closed) {
         pendingSidebarFocusRequest = true
         drawerState.setValue(DrawerValue.Open)
     }
@@ -1841,9 +1844,13 @@ private fun ModernSidebarScaffold(
     onNavigate: (String) -> Unit,
     onExitApp: () -> Unit
 ) {
-    val showSidebar = currentRoute in rootRoutes
+    // Canli TV ve Spor tam ekran deneyimi: sidebar ray'i tamamen gizlenir.
+    val immersiveFullscreen =
+        currentRoute == Screen.LiveTv.route || currentRoute == Screen.Sports.route
+    val showSidebar = currentRoute in rootRoutes && !immersiveFullscreen
     val sidebarTokens = NuvioComponents.tokens.sidebar
-    val collapsedSidebarWidth = if (sidebarCollapsed) NuvioTheme.spacing.none else sidebarTokens.collapsedWidth
+    val collapsedSidebarWidth =
+        if (sidebarCollapsed || immersiveFullscreen) NuvioTheme.spacing.none else sidebarTokens.collapsedWidth
     val openSidebarWidth = sidebarTokens.expandedWidth
 
     val focusManager = LocalFocusManager.current
@@ -1896,7 +1903,7 @@ private fun ModernSidebarScaffold(
         }
     }
 
-    BackHandler(enabled = currentRoute in rootRoutes && !isSidebarExpanded && !sidebarCollapsePending) {
+    BackHandler(enabled = showSidebar && !isSidebarExpanded && !sidebarCollapsePending) {
         isSidebarExpanded = true
         sidebarCollapsePending = false
         pendingSidebarFocusRequest = true

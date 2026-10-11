@@ -225,9 +225,13 @@ class LiveTvPlayerHandle internal constructor(
         player.playWhenReady = true
     }
 
-    /** Hata sonrası yeniden dener. */
+    /**
+     * Hata sonrası yeniden dener. Oynatıcı hazirsa (failover calisan adaya
+     * gectiyse) dokunmaz: prepare() durum degistirmezse isPreparing takilir kaliyor.
+     */
     fun retry() {
         if (player.mediaItemCount == 0) return
+        if (player.playbackState == Player.STATE_READY) return // zaten oynuyor
         errorMessage = null
         isPreparing = true
         player.prepare()
