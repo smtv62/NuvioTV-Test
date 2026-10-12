@@ -88,6 +88,7 @@ import com.smtv.one.domain.model.SportsChannel
 import com.smtv.one.ui.screens.livetv.LiveTvPlayerHandle
 import com.smtv.one.ui.screens.livetv.rememberLiveTvPlayer
 import com.smtv.one.ui.theme.NuvioTheme
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -125,6 +126,11 @@ fun SportsScreen() {
     val listFocus = remember { FocusRequester() }
     val rootFocus = remember { FocusRequester() }
     val listState = rememberLazyListState()
+
+    // Gezinme gezgini: art arda basılan tuşlarda önceki kayma iptal edilir; böylece
+    // liste zıplamak yerine bulunduğumuz yerden hedefe yumuşak kayar.
+    var navJob by remember { mutableStateOf<Job?>(null) }
+
     val rowRequesters = remember { mutableMapOf<String, FocusRequester>() }
     val chipRequesters = remember { mutableMapOf<String, FocusRequester>() }
     val refreshFocus = remember { FocusRequester() }
@@ -152,7 +158,7 @@ fun SportsScreen() {
         val targetId = rows.firstOrNull { it.id == selectedId }?.id ?: rows.firstOrNull()?.id
         if (targetId != null) {
             val index = rows.indexOfFirst { it.id == targetId }
-            if (index >= 0) runCatching { listState.scrollToItem(index) }
+            if (index >= 0) runCatching { listState.animateScrollToItem(index) }
             delay(60)
             runCatching { rowRequesters[targetId]?.requestFocus() }
             rowIndex = index
@@ -183,12 +189,20 @@ fun SportsScreen() {
         if (rows.isEmpty()) return
         val clamped = index.coerceIn(rows.indices)
         val id = rows[clamped].id
-        scope.launch {
-            runCatching { listState.scrollToItem(clamped) }
-            delay(50)
+        // Odak hedefi anında guncellenir (tus gecikmesi olmasin). Kayma iptal
+        // edilebilir oldugundan satır indeksi coroutine disinda sabitlenir:
+        // boylece art arda basilan tuslar her seferinde dogru satiri hedefler.
+        rowIndex = clamped
+        focusZone = PanelZone.ROW
+        navJob?.cancel()
+        navJob = scope.launch {
+            // Satır zaten ekrandaysa odak aninda gitsin (halka kaymayla kaybolmasin);
+            // gorunmuyorsa bos yere requestFocus denemesi yapilmaz.
+            val alreadyVisible = listState.layoutInfo.visibleItemsInfo.any { it.index == clamped }
+            if (alreadyVisible) runCatching { rowRequesters[id]?.requestFocus() }
+            runCatching { listState.animateScrollToItem(clamped) }
+            delay(40) // satırın LazyColumn'a bağlanması için
             runCatching { rowRequesters[id]?.requestFocus() }
-            rowIndex = clamped
-            focusZone = PanelZone.ROW
         }
     }
 
@@ -410,7 +424,11 @@ fun SportsScreen() {
                     rowRequesters = rowRequesters,
                     chipRequesters = chipRequesters,
                     onFocusChannel = { id ->
-                        rowIndex = channels.indexOfFirst { it.id == id }
+                        // Gezinme coroutine'i rowIndex'i yönetir; kayma sırasında
+                        // geç gelen odak olayları hedefi geriye taşımasın.
+                        if (navJob?.isActive != true) {
+                            rowIndex = channels.indexOfFirst { it.id == id }
+                        }
                         focusZone = PanelZone.ROW
                     },
                     onPlayChannel = ::playChannel,

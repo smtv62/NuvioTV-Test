@@ -128,6 +128,10 @@ fun LiveTvScreen() {
     val rootFocus = remember { FocusRequester() }
     val listState = rememberLazyListState()
 
+    // Gezinme gezgini: art arda basılan tuşlarda önceki kayma iptal edilir; böylece
+    // liste zıplamak yerine bulunduğumuz yerden hedefe yumuşak kayar.
+    var navJob by remember { mutableStateOf<Job?>(null) }
+
     // Açık (explicit) panel gezinmesi: yön tuşları Compose'un LazyColumn içi
     // geometrik aramasına bırakılmaz; satır/chip/buton hedefleri ayrı
     // FocusRequester'larla satır↔chip↔başlık arasında kendi mantığımızla taşınır.
@@ -159,7 +163,7 @@ fun LiveTvScreen() {
             ?: rows.firstOrNull()?.id
         if (targetId != null) {
             val index = rows.indexOfFirst { it.id == targetId }
-            if (index >= 0) runCatching { listState.scrollToItem(index) }
+            if (index >= 0) runCatching { listState.animateScrollToItem(index) }
             delay(60) // satırın LazyColumn'a bağlanması için
             runCatching { rowRequesters[targetId]?.requestFocus() }
             rowIndex = index
@@ -191,12 +195,20 @@ fun LiveTvScreen() {
         if (rows.isEmpty()) return
         val clamped = index.coerceIn(rows.indices)
         val id = rows[clamped].id
-        scope.launch {
-            runCatching { listState.scrollToItem(clamped) }
-            delay(50)
+        // Odak hedefi anında güncellenir (tuş gecikmesi olmasın). Kayma iptal
+        // edilebilir olduğundan satır indeksi coroutine dışında sabitlenir:
+        // böylece art arda basılan tuşlar her seferinde doğru satırı hedefler.
+        rowIndex = clamped
+        focusZone = PanelZone.ROW
+        navJob?.cancel()
+        navJob = scope.launch {
+            // Satır zaten ekrandaysa odak anında gitsin (halka kaymayla kaybolmasın);
+            // görünmüyorsa boş yere requestFocus denemesi yapılmaz.
+            val alreadyVisible = listState.layoutInfo.visibleItemsInfo.any { it.index == clamped }
+            if (alreadyVisible) runCatching { rowRequesters[id]?.requestFocus() }
+            runCatching { listState.animateScrollToItem(clamped) }
+            delay(40) // satırın LazyColumn'a bağlanması için
             runCatching { rowRequesters[id]?.requestFocus() }
-            rowIndex = clamped
-            focusZone = PanelZone.ROW
         }
     }
 
@@ -438,7 +450,11 @@ fun LiveTvScreen() {
                     chipRequesters = chipRequesters,
                     onFocusChannel = { id ->
                         viewModel.highlightChannel(id)
-                        rowIndex = channels.indexOfFirst { it.id == id }
+                        // Gezinme coroutine'i rowIndex'i yönetir; kayma sırasında
+                        // geç gelen odak olayları hedefi geriye taşımasın.
+                        if (navJob?.isActive != true) {
+                            rowIndex = channels.indexOfFirst { it.id == id }
+                        }
                         focusZone = PanelZone.ROW
                     },
                     onPlayChannel = { id ->
