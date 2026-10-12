@@ -159,7 +159,7 @@ fun AboutSettingsContent(
                                 onClick = {
                                     val intent = Intent(
                                         Intent.ACTION_VIEW,
-                                        Uri.parse("https://github.com/manitux-app/NuvioTV-Test")
+                                        Uri.parse("https://github.com/smtv62/NuvioTV-Test")
                                     )
                                     context.startActivity(intent)
                                 }

@@ -63,7 +63,7 @@ class SportsRepository @Inject constructor(
             SportsSource(
                 id = "atomspor",
                 name = "AtomSpor",
-                url = "https://raw.githubusercontent.com/panorea744/stawerlo/refs/heads/main/atom.m3u",
+                url = "https://raw.githubusercontent.com/smtv62/atomspor/refs/heads/main/atom.m3u",
             ),
             SportsSource(
                 id = "birazspor",

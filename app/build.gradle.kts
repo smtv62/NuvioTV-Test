@@ -106,8 +106,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1067
-        versionName = "1.1.0-beta.4"
+        // beta.5 uzak surumde (GitHub Releases) yayinlandigi icin beta.6'ya
+        // atlandi: uygulama ici guncelleyici daha dusuk surumlu bir build'i
+        // "guncelleme" olarak gosterip kasma duzeltmesini geri alabilirdi.
+        versionCode = 1070
+        versionName = "1.1.0-beta.6"
 
         buildConfigField("String", "PARENTAL_GUIDE_API_URL", "\"${localProperties.getProperty("PARENTAL_GUIDE_API_URL", "")}\"")
         buildConfigField("String", "INTRODB_API_URL", "\"${localProperties.getProperty("INTRODB_API_URL", "")}\"")
@@ -151,7 +154,9 @@ android {
         buildConfigField("boolean", "REMOTE_PLUGIN_SYNC_ENABLED", "false")
 
         // In-app updater (GitHub Releases) - kisisel fork deposu
-        buildConfigField("String", "GITHUB_OWNER", "\"manitux-app\"")
+        // Guncelleme kaynagi: kendi fork'u (smtv62). Ust proje (manitux-app)
+        // erisimimiz olan bir repo degil; guncellemeler buradan gelir.
+        buildConfigField("String", "GITHUB_OWNER", "\"smtv62\"")
         buildConfigField("String", "GITHUB_REPO", "\"NuvioTV-Test\"")
     }
 
