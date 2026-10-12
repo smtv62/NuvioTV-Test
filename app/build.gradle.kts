@@ -279,8 +279,11 @@ android {
         abi {
             isEnable = !buildingAppBundle
             reset()
-            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
-            isUniversalApk = true
+            // Cihaza ozel tek APK uretilir: x86 (32-bit) hicbir TV/emulatorde
+            // kullanilmadigi icin tamamen cikarildi. Boylece universal yerine
+            // her mimari icin ayri ve kucuk bir paket alinir.
+            include("armeabi-v7a", "arm64-v8a", "x86_64")
+            isUniversalApk = false
         }
     }
 
@@ -488,12 +491,13 @@ dependencies {
     ))
     implementation(libs.media3.ui)
 
-    // Local decoder AARs (AV1, IAMF, MPEG-H)
+    // Local decoder AARs (AV1, MPEG-H)
+    // IAMF (immersive audio) decoder'ı çıkarıldı: Turkish IPTV/VOD'da hiç
+    // kullanılmıyor ve koda hiç referansı yok.
     implementation(files(
         "libs/lib-decoder-av1-release.aar",
         "libs/lib-decoder-mpegh-release.aar"
     ))
-    add("fullImplementation", files("libs/lib-decoder-iamf-release.aar"))
     implementation(files("libs/lib-nuvio-engine-android-0.1.4.aar"))
     if (useLocalFfmpegDecoder) {
         implementation(project(":ffmpeg-decoder-downmix"))

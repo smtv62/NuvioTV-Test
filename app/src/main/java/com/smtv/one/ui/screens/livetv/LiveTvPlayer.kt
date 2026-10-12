@@ -36,7 +36,9 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DataSource
 import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.upstream.DefaultAllocator
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
@@ -58,6 +60,10 @@ private const val DEFAULT_USER_AGENT =
  * oynatıcı isteklerine varsayılan olarak eklenir.
  */
 private const val DEFAULT_ACCEPT_LANGUAGE = "tr-TR,tr;q=0.9,en;q=0.8"
+
+/** Canli yayin tamponu: allocator segmenti (64 KB) ve native ust sinir (48 MB). */
+private const val LIVE_ALLOCATOR_SEGMENT_SIZE = 64 * 1024
+private const val LIVE_TARGET_BUFFER_BYTES = 48 * 1024 * 1024
 
 /**
  * Her istekte M3U'dan gelen header'ları (Referer / User-Agent / Origin) ekleyen veri kaynağı.
@@ -90,6 +96,35 @@ private val probeClient = OkHttpClient.Builder()
     .connectTimeout(10, TimeUnit.SECONDS)
     .readTimeout(10, TimeUnit.SECONDS)
     .build()
+
+/**
+ * Canli yayin (IPTV + Spor) icin ayarli tamponlama.
+ *
+ * Varsayilan DefaultLoadControl dengesiz IPTV kaynaklarinda tamponu hizli
+ * tukettigi icin sik rebuffera (kasma/donma) yol aciyordu. Rebuffer sonrasi
+ * esik yuksek tutularak daha fazla veri toplanir; boylece kisa ag
+ * dalgalanmalari gorunur takilmaya donusmez. Canli yayinda geri sarma
+ * olmadigi icin buyuk tampon yalnizca gecikme artirir, kayip yaratmaz.
+ */
+@OptIn(markerClass = [UnstableApi::class])
+private fun buildLiveLoadControl(): DefaultLoadControl =
+    DefaultLoadControl.Builder()
+        // Tampon verisi Java heap'inde degil native bellekte tutulur. TV'nin
+        // ~65 MB'lik heap limitinde varsayilan allocator her saniye MB'larca
+        // byte[] uretir; 3-7 sn'de bir GC dongusu ve GC yarisi takilmaya
+        // yol aciyordu (logda "GC freed 18MB ... total 1.2s" goruluyordu).
+        .setAllocator(DefaultAllocator(true, LIVE_ALLOCATOR_SEGMENT_SIZE))
+        .setTargetBufferBytes(LIVE_TARGET_BUFFER_BYTES)
+        .setBufferDurationsMs(
+            /* minBufferMs= */ 30_000,
+            /* maxBufferMs= */ 60_000,
+            /* bufferForPlaybackMs= */ 2_500,
+            /* bufferForPlaybackAfterRebufferMs= */ 8_000,
+        )
+        // byte hedefi native bellekte sert sinir; sure esikleri oynatma
+        // baslama ve rebuffer sonrasi toplama esigini belirler.
+        .setPrioritizeTimeOverSizeThresholds(false)
+        .build()
 
 /** Uzantıdan içerik türü tahmini (.m3u8 → HLS vb.). */
 private fun knownMimeTypeFor(url: String): String? {
@@ -271,6 +306,7 @@ fun rememberLiveTvPlayer(): LiveTvPlayerHandle {
         val player = ExoPlayer.Builder(context)
             .setMediaSourceFactory(DefaultMediaSourceFactory(factory))
             .setAudioAttributes(audioAttributes, true)
+            .setLoadControl(buildLiveLoadControl())
             .build()
         LiveTvPlayerHandle(player, factory)
     }
