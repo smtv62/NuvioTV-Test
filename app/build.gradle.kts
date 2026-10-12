@@ -106,11 +106,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = 24
         targetSdk = 36
-        // beta.5 uzak surumde (GitHub Releases) yayinlandigi icin beta.6'ya
-        // atlandi: uygulama ici guncelleyici daha dusuk surumlu bir build'i
-        // "guncelleme" olarak gosterip kasma duzeltmesini geri alabilirdi.
-        versionCode = 1070
-        versionName = "1.1.0-beta.6"
+        // Surum adı uygulama ici guncelleyici tarafindan karsilastirilir; uzak
+        // surumden kucuk bir build "guncelleme" olarak gosterilip duzeltmeleri
+        // geri alabilirdi. Bu yuzden her yayinda yukari tasınır.
+        versionCode = 1071
+        versionName = "1.1.0-beta.7"
 
         buildConfigField("String", "PARENTAL_GUIDE_API_URL", "\"${localProperties.getProperty("PARENTAL_GUIDE_API_URL", "")}\"")
         buildConfigField("String", "INTRODB_API_URL", "\"${localProperties.getProperty("INTRODB_API_URL", "")}\"")
