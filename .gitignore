@@ -50,6 +50,9 @@ scripts/*
 !scripts/release_beta.py
 !scripts/tests/
 !scripts/tests/*.py
+!scripts/dsmart-bot/
+!scripts/dsmart-bot/*.py
+!scripts/dsmart-bot/*.md
 /supabase
 /SUPPORTER_COSMETICS.md
 tv-samples
