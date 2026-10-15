@@ -1,49 +1,47 @@
 #EXTM3U
 # D Smart GO - free / working live channels
-# generated: 2026-10-14T20:06:27+00:00
-# links expire: 2026-10-15T00:06:21+00:00
+# generated: 2026-10-15T00:33:34+00:00
+# links expire: 2026-10-15T04:33:12+00:00
 
 #EXTINF:-1 tvg-id="tv2" tvg-name="TV2" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/B/WE/245991/logo.png?v=639029456898926668" tvg-chno="21" group-title="Ulusal",TV2
-https://dsmart-new-live.ercdn.net/teve2/index.m3u8?userid=ed0&rid=07dbbdfec36ae47bb5848350f51a5900&st=qu3340svFsC_Xs-HNUe8dg&e=1792022783
+https://dsmart-new-live.ercdn.net/teve2/index.m3u8?userid=ed0&rid=01055f00c3ffc5f0b61d0022faafd189&st=thU_qUpcpQqXt2y-OkmquQ&e=1792038796
 #EXTINF:-1 tvg-id="kanal-d" tvg-name="Kanal D" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/a/-p/245931/logo.png?v=638804938239723164" tvg-chno="22" group-title="Ulusal",Kanal D
-https://dsmart-new-live.ercdn.net/kanald/index.m3u8?userid=ed0&rid=a04e6ce99ea70e1aa41f36f348a3edd0&st=CoizS0y5HUIhcq7B8IoubA&e=1792022781
+https://dsmart-new-live.ercdn.net/kanald/index.m3u8?userid=ed0&rid=3431c227dacec1e6ef8677bb43cb9875&st=heP7gKJHbQiz2t_dPtPw7w&e=1792038792
 #EXTINF:-1 tvg-id="show-tv" tvg-name="Show TV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/X/rT/245949/logo.png?v=638671713564122216" tvg-chno="23" group-title="Ulusal",Show TV
-https://dsmart-new-live.ercdn.net/showtv/index.m3u8?userid=ed0&rid=edc0cb385fff809d27cbc6b797efa09a&st=JJEDxBw56JdFgZz0Cn6t2w&e=1792022783
+https://dsmart-new-live.ercdn.net/showtv/index.m3u8?userid=ed0&rid=9f593bdd6873c3176bf0814abdd70b8d&st=Jqihk-x5UxmBgbcZrIY_lA&e=1792038796
 #EXTINF:-1 tvg-id="star" tvg-name="STAR" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/Y/Sk/245994/logo.png?v=638671713931288249" tvg-chno="24" group-title="Ulusal",STAR
-https://dsmart-new-live.ercdn.net/startv/index.m3u8?userid=ed0&rid=eb98d29d779322c94b2355aa970051f9&st=lVzHkCGB8B0vG0JBkjPf9g&e=1792022783
+https://dsmart-new-live.ercdn.net/startv/index.m3u8?userid=ed0&rid=d461d6ecf716c9a82a4c17c8294fe01d&st=Bhc4MmE0rKBSfrzGIGjXhA&e=1792038796
 #EXTINF:-1 tvg-id="atv" tvg-name="ATV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/S/Js/246030/logo.png?v=638671714237086283" tvg-chno="25" group-title="Ulusal",ATV
-https://dsmart-new-live.ercdn.net/atv/index.m3u8?userid=ed0&rid=1d24178d63d970a01aca98da14f6af5a&st=oV3uK0vWHO6mCRs9Uv3Mvg&e=1792022781
+https://dsmart-new-live.ercdn.net/atv/index.m3u8?userid=ed0&rid=612a3c725cf26c2ce0d62d87b8e28ad5&st=IPbYKcAxDG7BiB03JkSnJQ&e=1792038792
 #EXTINF:-1 tvg-id="trt-1" tvg-name="TRT 1" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/S/tg/245943/logo.png?v=638671713518783129" tvg-chno="26" group-title="Ulusal",TRT 1
-https://dsmart-new-live.ercdn.net/trt1/index.m3u8?dvr=10m&userid=ed0&rid=92bb9f02ed9affaa4c97b4b7d4cd39b1&st=n9PXxsIfXUYrIKiDeH_jYg&e=1792022783
+https://dsmart-new-live.ercdn.net/trt1/index.m3u8?dvr=10m&userid=ed0&rid=7f2b9604d0795bd8f7f7845699c6a5b9&st=b4-3dLVTyXhEbUWl_tUq1A&e=1792038796
 #EXTINF:-1 tvg-id="tv8" tvg-name="TV8" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/M/NO/246132/logo.png?v=638671715139829563" tvg-chno="28" group-title="Ulusal",TV8
-https://dsmart-new-live.ercdn.net/tv8/index.m3u8?dvr=10m&userid=ed0&rid=1f3e17675f73e8b38f804f652e29dd2a&st=_uMXKwWQnOEDn5Os3Fij9w&e=1792022783
+https://dsmart-new-live.ercdn.net/tv8/index.m3u8?dvr=10m&userid=ed0&rid=f1b5513bb9c27f2501fe7c4e90663ce6&st=yPtPftsGGWNGWBb2DGw1iA&e=1792038797
 #EXTINF:-1 tvg-id="now" tvg-name="NOW" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/U/w2/245997/logo.png?v=638671713963955947" tvg-chno="29" group-title="Ulusal",NOW
-https://dsmart-new-live.ercdn.net/nowtv/index.m3u8?dvr=20m&userid=ed0&rid=2a720a01afa345fca5d7d31c100af369&st=7jaoESC1wPeg3YJgY4dyng&e=1792022783
+https://dsmart-new-live.ercdn.net/nowtv/index.m3u8?dvr=20m&userid=ed0&rid=be7ee7c87dd97d22c0224b4b5f2601ad&st=38_eOCx87ar0pzizvHZLGA&e=1792038797
 #EXTINF:-1 tvg-id="cnn-turk" tvg-name="CNN Türk" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/U/Cg/245940/logo.png?v=638671713494111482" tvg-chno="30" group-title="Haber",CNN Türk
-https://dsmart-new-live.ercdn.net/cnnturk/index.m3u8?dvr=10m&userid=ed0&rid=e1ce3eac18e57975275598c6b4570121&st=VHh6ys7Cwt30b8vF4MRAlQ&e=1792022784
+https://dsmart-new-live.ercdn.net/cnnturk/index.m3u8?dvr=10m&userid=ed0&rid=705efe1691f34f7ffba2ebb57711a26f&st=Q445qUEAvYC5KHHNE8r6Lg&e=1792038798
 #EXTINF:-1 tvg-id="ntv" tvg-name="NTV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/A/Bt/246120/logo.png?v=638671715037303020" tvg-chno="31" group-title="Ulusal / Haber",NTV
-https://dsmart-new-live.ercdn.net/ntv/index.m3u8?dvr=10m&userid=ed0&rid=f4a11bc71f06f2850571d2a19006107a&st=LcGbopF2-3s9w35jQY7yCQ&e=1792022784
+https://dsmart-new-live.ercdn.net/ntv/index.m3u8?dvr=10m&userid=ed0&rid=2d91b8bab965e2bbd59b706263e28c1a&st=RFJ44l6FzTiA6jOFMTLQ6Q&e=1792038798
 #EXTINF:-1 tvg-id="trt-haber" tvg-name="TRT Haber" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/c/Bc/246024/logo.png?v=638671714191721394" tvg-chno="32" group-title="Haber",TRT Haber
-https://dsmart-new-live.ercdn.net/trthaber/index.m3u8?dvr=10m&userid=ed0&rid=f193c00e63e596309e29b7cd8372bde6&st=HmcB1BHZMGfMh8bjmHSaCQ&e=1792022784
+https://dsmart-new-live.ercdn.net/trthaber/index.m3u8?dvr=10m&userid=ed0&rid=e835a504f929c6e1e17967d856159bce&st=_6tg4TWtNoBw0gSF6S_iVQ&e=1792038798
 #EXTINF:-1 tvg-id="haber-turk" tvg-name="Haber Türk" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/7/RQ/246027/logo.png?v=638671714214114905" tvg-chno="33" group-title="Haber",Haber Türk
-https://dsmart-new-live.ercdn.net/haberturk/index.m3u8?dvr=10m&userid=ed0&rid=db1c1b449ee49d84dda925aa2b168e16&st=PjPOCqFkZ8Kt4aP5fHn72Q&e=1792022784
+https://dsmart-new-live.ercdn.net/haberturk/index.m3u8?dvr=10m&userid=ed0&rid=cb285f1a2829dae9ecf2c17398b56074&st=hkL0zl-II5wVSs-IBqdQsg&e=1792038798
 #EXTINF:-1 tvg-id="tgrt-haber" tvg-name="TGRT Haber" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/X/r2/246066/logo.png?v=638671714551736085" tvg-chno="45" group-title="Haber",TGRT Haber
-https://dsmart-new-live.ercdn.net/tgrthaber/index.m3u8?dvr=10m&userid=ed0&rid=10123682f313d8b749d0ef0bd9fce84b&st=lzAjTyEuEDGqy7150C0yEA&e=1792022784
+https://dsmart-new-live.ercdn.net/tgrthaber/index.m3u8?dvr=10m&userid=ed0&rid=665267209ede75fa2016bfff561c6d31&st=wbzQ2iulvDPGLrsYUVp9Dg&e=1792038800
 #EXTINF:-1 tvg-id="tay-tv" tvg-name="Tay TV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/b/0t/246108/logo.png?v=639103081873842520" tvg-chno="74" group-title="Spor",Tay TV
-https://dsmart-new-live.ercdn.net/taytv/index.m3u8?dvr=10m&userid=ed0&rid=9acdec3a68bc22f17acb720f7a73623b&st=WcfjqAHfZNcStZ2oko7iAA&e=1792022786
+https://dsmart-new-live.ercdn.net/taytv/index.m3u8?dvr=10m&userid=ed0&rid=e1727bec76257de6783bdf5c5ff48d47&st=lPEi-eUx05azCXfusFdt8A&e=1792038805
 #EXTINF:-1 tvg-id="ht-spor" tvg-name="HT Spor" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/X/p9/394506/logo.png?v=638671716286348977" tvg-chno="79" group-title="Spor",HT Spor
-https://dsmart-new-live.ercdn.net/htspor/index.m3u8?dvr=10m&userid=ed0&rid=55d1d075ac9a47179be6cbc3658c32d5&st=q_IBMadGCWgYxaAlz2zsjA&e=1792022786
+https://dsmart-new-live.ercdn.net/htspor/index.m3u8?dvr=10m&userid=ed0&rid=1ecaa4e0ca972ff578b7a64a68cf647d&st=AuqwZRqU7KDHZrG0jPSCxg&e=1792038805
 #EXTINF:-1 tvg-id="a-spor" tvg-name="A Spor" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/T/Rx/246135/logo.png?v=638671715192769225" tvg-chno="80" group-title="Spor / Ulusal",A Spor
-https://dsmart-new-live.ercdn.net/aspor/index.m3u8?dvr=10m&userid=ed0&rid=55242e3078fc3087ed838abdd31c81a3&st=IpIF7kA_JXWW1I4o5jW2zQ&e=1792022786
+https://dsmart-new-live.ercdn.net/aspor/index.m3u8?dvr=10m&userid=ed0&rid=256c6c52fdcbd3275b1a80c857310861&st=epRuyDgdLvr_f_pUXvyh1g&e=1792038806
 #EXTINF:-1 tvg-id="trt-spor" tvg-name="TRT Spor" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/K/_x/245946/logo.png?v=638671713539809839" tvg-chno="85" group-title="Spor",TRT Spor
-https://dsmart-new-live.ercdn.net/trtspor/index.m3u8?dvr=10m&userid=ed0&rid=219b6eeb4bea3e1fe36557a405d168ac&st=skcMNmWFYgQ1o_RC517jvg&e=1792022788
+https://dsmart-new-live.ercdn.net/trtspor/index.m3u8?dvr=10m&userid=ed0&rid=4fc41544e4b118deebdb8376da93457a&st=dsNo7w-zD6ZAOd58pz0oUQ&e=1792038806
 #EXTINF:-1 tvg-id="trt-spor-yildiz" tvg-name="Trt Spor Yıldız" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/G/YE/246177/logo.png?v=638671715529106823" tvg-chno="86" group-title="Spor",Trt Spor Yıldız
-https://dsmart-new-live.ercdn.net/trtsporyildiz/index.m3u8?dvr=10m&userid=ed0&rid=faea44eb4a21681c06d16f33f080c0d6&st=95Yg544o_qzxSBJVI24g1w&e=1792022787
+https://dsmart-new-live.ercdn.net/trtsporyildiz/index.m3u8?dvr=10m&userid=ed0&rid=5566c1ac781eabb18bf44a16313f324f&st=VkH4S9WQhUGArnz8UI6XqQ&e=1792038806
 #EXTINF:-1 tvg-id="szc-tv" tvg-name="SZC TV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/L/kO/246240/logo.png?v=638671716034197297" tvg-chno="93" group-title="Haber",SZC TV
-https://dsmart-new-live.ercdn.net/sozcutv/index.m3u8?dvr=10m&userid=ed0&rid=9573f982847a283ebd476d4d3f009c97&st=B-1JydK6Pi01E2VSqylMSQ&e=1792022787
+https://dsmart-new-live.ercdn.net/sozcutv/index.m3u8?dvr=10m&userid=ed0&rid=87ab95083269b8560738f09785173f1b&st=LrYbl51Kwl9BFcrccQHvtQ&e=1792038807
 #EXTINF:-1 tvg-id="kralpop" tvg-name="KralPop" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/o/p6/1356544/logo.png?v=639244688798211093" tvg-chno="114" group-title="Müzik",KralPop
-https://dsmartgo.daioncdn.net/kralpopdsgo/kralpopdsgo.m3u8?userid=ed0&rid=c4b1933ddef9991ffddfa02d010090e2&st=fmyEUoQSyZw86zfkMiAt1Q&e=1792022788&app=dsmart_web
-#EXTINF:-1 tvg-id="rt-international" tvg-name="RT International" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/Q/TF/1029235/logo.png?v=639070934488012216" tvg-chno="155" group-title="Haber / Uluslararası",RT International
-https://dsmartgo-live.ercdn.net/rtint/rtint.m3u8?userid=ed0&rid=a2e9df88d8263f85e642b0a91daf1d7a&st=qsYSGo-O8PUPRgcKZa5m0A&e=1792022789
+https://dsmartgo.daioncdn.net/kralpopdsgo/kralpopdsgo.m3u8?userid=ed0&rid=16b5c433c46a0143039f82b5a9ffcc70&st=Z1DqgI6bADYdb6qK5NPk4g&e=1792038808&app=dsmart_web
 #EXTINF:-1 tvg-id="halk-tv" tvg-name="Halk TV" tvg-logo="https://zdi2vdd5r0wt.merlincdn.net/content/F/zn/246096/logo.png?v=638671714813453912" tvg-chno="272" group-title="Ulusal",Halk TV
-https://dsmart-new-live.ercdn.net/halktv/index.m3u8?dvr=10m&userid=ed0&rid=c133de7f7e7eb6122cf82623933a1b7c&st=RfWOcHipkChHnm8Aws1XTw&e=1792022789
+https://dsmart-new-live.ercdn.net/halktv/index.m3u8?dvr=10m&userid=ed0&rid=5951ef9c03ee8360e0598fda0bc00bf0&st=9bHLPRzIKwpVxaxyV6Hgig&e=1792038812
