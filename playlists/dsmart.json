@@ -1,12 +1,12 @@
 {
   "source": "dsmartgo.com.tr",
-  "generated_at": "2026-10-26T07:50:24+00:00",
-  "expires_at": "2026-10-26T11:50:05+00:00",
+  "generated_at": "2026-10-26T15:14:08+00:00",
+  "expires_at": "2026-10-26T19:13:47+00:00",
   "count": 21,
-  "scanned": 113,
-  "skipped": 92,
+  "scanned": 114,
+  "skipped": 93,
   "skip_reasons": {
-    "500106 needs login": 91,
+    "500106 needs login": 92,
     "signature rejected by CDN": 1
   },
   "channels": [
@@ -19,8 +19,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/B/WE/245991/logo.png?v=639029456898926668",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/B/WE/245991/thumbnail.png?v=639029456781628090",
       "base_url": "https://dsmart-new-live.ercdn.net/teve2/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/teve2/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=d8c9ab593909f644a22f7e2e680d959d&st=Y1Z0KML-XNLYw16advIRXw&e=1793015409",
-      "expires_at": "2026-10-26T11:50:09+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/teve2/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=99ad0c265c2ed0cbe5d007724f9cbb0f&st=NzwgRzeumSoZkAJkuXrLyA&e=1793042030",
+      "expires_at": "2026-10-26T19:13:50+00:00"
     },
     {
       "id": 245931,
@@ -31,8 +31,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/a/-p/245931/logo.png?v=638804938239723164",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/a/-p/245931/thumbnail.png?v=638904139947351296",
       "base_url": "https://dsmart-new-live.ercdn.net/kanald/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/kanald/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=4b4139c67a6eb381d837d213a88fdd18&st=6fqpQnyrS10WHpxdpfB2eA&e=1793015405",
-      "expires_at": "2026-10-26T11:50:05+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/kanald/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=eeb1a114612d5c96c7292f81fce1eb56&st=3BlWdZZlrz4_bO_LuEGYow&e=1793042027",
+      "expires_at": "2026-10-26T19:13:47+00:00"
     },
     {
       "id": 245949,
@@ -43,8 +43,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/X/rT/245949/logo.png?v=638671713564122216",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/X/rT/245949/thumbnail.png?v=638942276342885075",
       "base_url": "https://dsmart-new-live.ercdn.net/showtv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/showtv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=3e02ab5c01be8c65fde2ede9326c35e5&st=9SbEv0G-i4ajMSCIDTxs9A&e=1793015409",
-      "expires_at": "2026-10-26T11:50:09+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/showtv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=cf1f25aac3c84a696d5d66f0e57baf48&st=4cBTOo49nAperRWlXETMYA&e=1793042030",
+      "expires_at": "2026-10-26T19:13:50+00:00"
     },
     {
       "id": 245994,
@@ -55,8 +55,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/Y/Sk/245994/logo.png?v=638671713931288249",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/Y/Sk/245994/thumbnail.png?v=638942262089321264",
       "base_url": "https://dsmart-new-live.ercdn.net/startv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/startv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=274ca573f902f34f0fd27262555c5770&st=JEbBwnw-uhEOTWXCiP6-dQ&e=1793015409",
-      "expires_at": "2026-10-26T11:50:09+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/startv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=be0c7f13e990e421646f1768df6f3e3b&st=dmCswdmBG3es9auoImXPLQ&e=1793042031",
+      "expires_at": "2026-10-26T19:13:51+00:00"
     },
     {
       "id": 246030,
@@ -67,8 +67,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/S/Js/246030/logo.png?v=638671714237086283",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/S/Js/246030/thumbnail.png?v=639069395119722617",
       "base_url": "https://dsmart-new-live.ercdn.net/atv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/atv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=120091a14992438a3a28e368946c641e&st=00P0Ws_9RWznmLmwGDwV_A&e=1793015405",
-      "expires_at": "2026-10-26T11:50:05+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/atv/index.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=3e8924a5d6023f6bb72bc67cd48fefa9&st=nN3jjHouEuucyF1CQ6FZJg&e=1793042027",
+      "expires_at": "2026-10-26T19:13:47+00:00"
     },
     {
       "id": 245943,
@@ -79,8 +79,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/S/tg/245943/logo.png?v=638671713518783129",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/S/tg/245943/thumbnail.png?v=638942277409224318",
       "base_url": "https://dsmart-new-live.ercdn.net/trt1/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/trt1/index.m3u8?dvr=10m&userid=ed0&rid=2926263447674e36d5ae1ecb5da9612c&st=hGqCmGdEBe0sB01qUhyE-A&e=1793015409",
-      "expires_at": "2026-10-26T11:50:09+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/trt1/index.m3u8?dvr=10m&userid=ed0&rid=57e8c5e7185acd7ccb47279aaa535444&st=wqr7rzeYNbEgkFbVzCBXOw&e=1793042031",
+      "expires_at": "2026-10-26T19:13:51+00:00"
     },
     {
       "id": 246132,
@@ -91,8 +91,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/M/NO/246132/logo.png?v=638671715139829563",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/M/NO/246132/thumbnail.png?v=638942208804402701",
       "base_url": "https://dsmart-new-live.ercdn.net/tv8/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/tv8/index.m3u8?dvr=10m&userid=ed0&rid=f328df579ee66edf192646e3b032b96d&st=SUXbUdhZ_57KD0aVyiW8Wg&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/tv8/index.m3u8?dvr=10m&userid=ed0&rid=bf4c2b4dec711ab792d3274a8389900e&st=GAmBEFP9RucDCXhMiVFfTQ&e=1793042031",
+      "expires_at": "2026-10-26T19:13:51+00:00"
     },
     {
       "id": 245997,
@@ -103,8 +103,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/U/w2/245997/logo.png?v=638671713963955947",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/U/w2/245997/thumbnail.png?v=638942261480080494",
       "base_url": "https://dsmart-new-live.ercdn.net/nowtv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/nowtv/index.m3u8?dvr=20m&userid=ed0&rid=3826e8b59170721987c94a1a5bee3039&st=I_aHXEByMLeFDZgrD08wmg&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/nowtv/index.m3u8?dvr=20m&userid=ed0&rid=b23767d0c9a06163133fb25f66273da9&st=S23TsIbGqMle9-29BbSgjQ&e=1793042031",
+      "expires_at": "2026-10-26T19:13:51+00:00"
     },
     {
       "id": 245940,
@@ -115,8 +115,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/U/Cg/245940/logo.png?v=638671713494111482",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/U/Cg/245940/thumbnail.png?v=638905387407591332",
       "base_url": "https://dsmart-new-live.ercdn.net/cnnturk/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/cnnturk/index.m3u8?dvr=10m&userid=ed0&rid=2473fcf987add559060b6633b5e95e9e&st=1JRUlch3Bl4tlPGw18khRw&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/cnnturk/index.m3u8?dvr=10m&userid=ed0&rid=4f98ab791adc2747a9a9ed3fddcdf29a&st=uVmvPc0X9zDuNWg_no5_uA&e=1793042032",
+      "expires_at": "2026-10-26T19:13:52+00:00"
     },
     {
       "id": 246120,
@@ -127,8 +127,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/A/Bt/246120/logo.png?v=638671715037303020",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/A/Bt/246120/thumbnail.png?v=638942213618877039",
       "base_url": "https://dsmart-new-live.ercdn.net/ntv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/ntv/index.m3u8?dvr=10m&userid=ed0&rid=46d907509c29b8d27013a746b9277031&st=MAyQRVC_TcCLo_nPJ_e2bQ&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/ntv/index.m3u8?dvr=10m&userid=ed0&rid=c0804d29886eceda4225d0a0237333ae&st=6H1e6mi0iZgiMT1JNBADLg&e=1793042032",
+      "expires_at": "2026-10-26T19:13:52+00:00"
     },
     {
       "id": 246024,
@@ -139,8 +139,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/c/Bc/246024/logo.png?v=638671714191721394",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/c/Bc/246024/thumbnail.png?v=638942253798332132",
       "base_url": "https://dsmart-new-live.ercdn.net/trthaber/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/trthaber/index.m3u8?dvr=10m&userid=ed0&rid=06d2ca9dfa3b471243bbc9ae3e60cca9&st=XARjC3gta0oFh95sLNprPw&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/trthaber/index.m3u8?dvr=10m&userid=ed0&rid=f64638c265be8d32a7ceaea075169ee9&st=X7wE8LVBtT5_cgDx04u8Ug&e=1793042033",
+      "expires_at": "2026-10-26T19:13:53+00:00"
     },
     {
       "id": 246027,
@@ -151,8 +151,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/7/RQ/246027/logo.png?v=638671714214114905",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/7/RQ/246027/thumbnail.png?v=638942253357725625",
       "base_url": "https://dsmart-new-live.ercdn.net/haberturk/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/haberturk/index.m3u8?dvr=10m&userid=ed0&rid=d1cc772de1529f122935cc159d983b63&st=OKvaU1pPsw8zTioQ_w4oTQ&e=1793015410",
-      "expires_at": "2026-10-26T11:50:10+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/haberturk/index.m3u8?dvr=10m&userid=ed0&rid=53eb7892a89be6dd3effd087265631af&st=WtemZ3uKn-M3QEWqQNzkPg&e=1793042032",
+      "expires_at": "2026-10-26T19:13:52+00:00"
     },
     {
       "id": 246066,
@@ -163,8 +163,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/X/r2/246066/logo.png?v=638671714551736085",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/X/r2/246066/thumbnail.png?v=638942240938400679",
       "base_url": "https://dsmart-new-live.ercdn.net/tgrthaber/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/tgrthaber/index.m3u8?dvr=10m&userid=ed0&rid=956186c5c1351ea61c3a3cc490f234ef&st=PLg7-thM9bcNfbzoO1UMqw&e=1793015413",
-      "expires_at": "2026-10-26T11:50:13+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/tgrthaber/index.m3u8?dvr=10m&userid=ed0&rid=c19e9df98ee50c48d99000081d61b775&st=f8CGppdB4YKZn7ko7irOOg&e=1793042035",
+      "expires_at": "2026-10-26T19:13:55+00:00"
     },
     {
       "id": 246108,
@@ -175,8 +175,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/b/0t/246108/logo.png?v=639103081873842520",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/b/0t/246108/thumbnail.png?v=639103081738834029",
       "base_url": "https://dsmart-new-live.ercdn.net/taytv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/taytv/index.m3u8?dvr=10m&userid=ed0&rid=5210f2d4f43f4701331176d26ebbd4c3&st=rbElGCRvpy9Z8fCgSrUS_g&e=1793015416",
-      "expires_at": "2026-10-26T11:50:16+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/taytv/index.m3u8?dvr=10m&userid=ed0&rid=7e353ab3c0ab3e215728de8f31f08577&st=jG3K_LE69XYyNanLA8iovg&e=1793042039",
+      "expires_at": "2026-10-26T19:13:59+00:00"
     },
     {
       "id": 394506,
@@ -187,8 +187,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/X/p9/394506/logo.png?v=638671716286348977",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/X/p9/394506/thumbnail.png?v=638942158633353636",
       "base_url": "https://dsmart-new-live.ercdn.net/htspor/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/htspor/index.m3u8?dvr=10m&userid=ed0&rid=bfe08e6d766d32316dfd12d9ecd2d44b&st=6Owrb48pm2sOI2wA7CgMvw&e=1793015417",
-      "expires_at": "2026-10-26T11:50:17+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/htspor/index.m3u8?dvr=10m&userid=ed0&rid=c9fbf8ed3a89086655b9360ab1b30643&st=x7TqRuQ0pgTva1G9IBfvdA&e=1793042040",
+      "expires_at": "2026-10-26T19:14:00+00:00"
     },
     {
       "id": 246135,
@@ -199,8 +199,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/T/Rx/246135/logo.png?v=638671715192769225",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/T/Rx/246135/thumbnail.png?v=638942208411957367",
       "base_url": "https://dsmart-new-live.ercdn.net/aspor/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/aspor/index.m3u8?dvr=10m&userid=ed0&rid=a4caef335c866f22b5c682472c702f8b&st=W1i782G7FcJygFXTOnugDQ&e=1793015417",
-      "expires_at": "2026-10-26T11:50:17+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/aspor/index.m3u8?dvr=10m&userid=ed0&rid=a52021781cbf9e15c088cc3f7dd46b52&st=RWjmFHEWYOkuSAA2Is1-Zg&e=1793042040",
+      "expires_at": "2026-10-26T19:14:00+00:00"
     },
     {
       "id": 245946,
@@ -211,8 +211,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/K/_x/245946/logo.png?v=638671713539809839",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/K/_x/245946/thumbnail.png?v=638942276708918605",
       "base_url": "https://dsmart-new-live.ercdn.net/trtspor/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/trtspor/index.m3u8?dvr=10m&userid=ed0&rid=81cf9ff2a11e3087deee218187ecc8c4&st=qQ52b5JdZ0W0xXTk1nrfJQ&e=1793015417",
-      "expires_at": "2026-10-26T11:50:17+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/trtspor/index.m3u8?dvr=10m&userid=ed0&rid=d151f05b9df44112664e5aa9bf8e51c6&st=jDF9eMI7Lx2cFizZxd4lDA&e=1793042040",
+      "expires_at": "2026-10-26T19:14:00+00:00"
     },
     {
       "id": 246177,
@@ -223,8 +223,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/G/YE/246177/logo.png?v=638671715529106823",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/G/YE/246177/thumbnail.png?v=638942189054152173",
       "base_url": "https://dsmart-new-live.ercdn.net/trtsporyildiz/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/trtsporyildiz/index.m3u8?dvr=10m&userid=ed0&rid=86df36187a8374d545a3f31f733665ac&st=2foIlrzncnAHP-EQXBozbQ&e=1793015418",
-      "expires_at": "2026-10-26T11:50:18+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/trtsporyildiz/index.m3u8?dvr=10m&userid=ed0&rid=1f4d0530aef89b5e37a62e78378d57e4&st=aOR2NoMS2zSrdsDEoUXO1w&e=1793042040",
+      "expires_at": "2026-10-26T19:14:00+00:00"
     },
     {
       "id": 246240,
@@ -235,8 +235,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/L/kO/246240/logo.png?v=638671716034197297",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/L/kO/246240/thumbnail.png?v=638942169476378981",
       "base_url": "https://dsmart-new-live.ercdn.net/sozcutv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/sozcutv/index.m3u8?dvr=10m&userid=ed0&rid=10c74aac9a2c97f09944cb216219b379&st=XEZ_QDbxNrGgc3LQ6y4DIQ&e=1793015418",
-      "expires_at": "2026-10-26T11:50:18+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/sozcutv/index.m3u8?dvr=10m&userid=ed0&rid=c85d0014a5b2f560593b2a75461c93ca&st=tpJ_0xf6_8rNaJLrGRaCoA&e=1793042041",
+      "expires_at": "2026-10-26T19:14:01+00:00"
     },
     {
       "id": 1356544,
@@ -247,8 +247,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/o/p6/1356544/logo.png?v=639244688798211093",
       "thumbnail": null,
       "base_url": "https://dsmartgo.daioncdn.net/kralpopdsgo/kralpopdsgo.m3u8",
-      "url": "https://dsmartgo.daioncdn.net/kralpopdsgo/kralpopdsgo.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=840dc1587102f374f1bf58325f0473eb&st=XM7ZX_CmpUb_hOA71IWMLg&e=1793015419&app=dsmart_web",
-      "expires_at": "2026-10-26T11:50:19+00:00"
+      "url": "https://dsmartgo.daioncdn.net/kralpopdsgo/kralpopdsgo.m3u8?user_p=ad%3Dtrue&userid=ed0&rid=8b243a2258d2ee78084c77610020eb4b&st=Izgh6ZVp_rPVIrjhF9vX2A&e=1793042043&app=dsmart_web",
+      "expires_at": "2026-10-26T19:14:03+00:00"
     },
     {
       "id": 246096,
@@ -259,8 +259,8 @@
       "logo": "https://zdi2vdd5r0wt.merlincdn.net/content/F/zn/246096/logo.png?v=638671714813453912",
       "thumbnail": "https://zdi2vdd5r0wt.merlincdn.net/content/F/zn/246096/thumbnail.png?v=638942222218736603",
       "base_url": "https://dsmart-new-live.ercdn.net/halktv/index.m3u8",
-      "url": "https://dsmart-new-live.ercdn.net/halktv/index.m3u8?dvr=10m&userid=ed0&rid=d91f3dd3fd53e838b125d6ac65de8faa&st=_sp-LnNXZkc4jPa-P7kTdQ&e=1793015422",
-      "expires_at": "2026-10-26T11:50:22+00:00"
+      "url": "https://dsmart-new-live.ercdn.net/halktv/index.m3u8?dvr=10m&userid=ed0&rid=219dc70fd0ef552f8fb690291575c3c3&st=iasrG9B9p2IL80x1U80hXg&e=1793042046",
+      "expires_at": "2026-10-26T19:14:06+00:00"
     }
   ]
 }
