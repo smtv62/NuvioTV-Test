@@ -38,7 +38,19 @@ data class SportsUiState(
 ) {
     val filteredChannels: List<SportsChannel>
         get() = selectedSourceId
-            ?.let { sid -> channels.filter { channel -> channel.candidates.any { it.sourceId == sid } } }
+            ?.let { sid ->
+                // Kaynak cipi seciliyken yalniz o kaynagin adaylari birakilir:
+                // boylece oynatma diger kaynaklara ATLAYAMAZ ve kullanici hangi
+                // kaynagin calistigini net gorur (VOD/olu kaynak tespiti).
+                channels.mapNotNull { channel ->
+                    val scoped = channel.candidates.filter { it.sourceId == sid }
+                    if (scoped.isEmpty()) return@mapNotNull null
+                    channel.copy(
+                        candidates = scoped,
+                        sourceNames = scoped.map { it.sourceName }.distinct(),
+                    )
+                }
+            }
             ?: channels
 }
 

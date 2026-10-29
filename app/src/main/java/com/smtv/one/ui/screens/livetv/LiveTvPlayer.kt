@@ -240,6 +240,7 @@ class LiveTvPlayerHandle internal constructor(
     suspend fun play(url: String?, headers: Map<String, String>) {
         if (url.isNullOrBlank()) {
             isPreparing = false
+            errorMessage = null
             lastMediaItem = null
             player.stop()
             player.clearMediaItems()

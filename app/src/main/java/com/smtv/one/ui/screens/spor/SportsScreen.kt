@@ -100,8 +100,11 @@ private val PanelStartPadding = 72.dp
  * Spor ekrani: tum kaynaklardan birlestirilmis kanal/etkinlik listesi +
  * tam ekran yayin sahnesi.
  *
- * - Kullanici sadece kanali/etkinligi secer; uygulama aday kaynaklari
- *   sirayla dener (film/dizi tarafindaki coklu-kaynak aramasi gibi).
+ * - Kullanici sadece kanali/etkinligi secer; "Tumu" cibinde aday kaynaklar
+ *   sirayla denenir (film/dizi tarafindaki coklu-kaynak aramasi gibi).
+ * - Belirli bir kaynak cibi seciliyken oynatma O KAYNAKLA KISITLIDIR: liste ve
+ *   adaylar daralir, diger kaynaklara atlanmaz. Boylece hangi kaynagin calistigi
+ *   (VOD/olu yayin dahil) net tespit edilir.
  * - Ustte kaynak filtre chipleri (Tumu + TRGoals/AtomSpor/Birazspor/SLCK).
  * - Panel 8 sn hareketsizlikte otomatik gizlenir; BACK gizliyse acar.
  */
@@ -149,7 +152,9 @@ fun SportsScreen() {
 
     val scope = rememberCoroutineScope()
 
-    val currentChannel = state.channels.firstOrNull { it.id == selectedId }
+    // Oynatma kaynak cipine kisitli kalmalı: adaylar FILTRELI listeden gelir.
+    // (state.channels tum kaynaklari icerir; oradan alinca cip disina atlardi.)
+    val currentChannel = channels.firstOrNull { it.id == selectedId }
     val candidate = currentChannel?.candidates?.getOrNull(candidateIndex)
 
     /** Listeyi acan/odagi toparlayan hedef: calan kanal satiri. */
@@ -223,7 +228,10 @@ fun SportsScreen() {
     }
 
     fun playChannel(id: String) {
-        candidateIndex = viewModel.preferredIndexFor(id)
+        // Tercih edilen aday indeksi tum kaynaklar icin hatirlanir; kaynak
+        // cipi kisa bir liste olusturabilecegi icin sinirlanir.
+        val maxIndex = (channels.firstOrNull { it.id == id }?.candidates?.size ?: 1) - 1
+        candidateIndex = viewModel.preferredIndexFor(id).coerceIn(0, maxIndex.coerceAtLeast(0))
         failAttempts = 0
         selectedId = id
         hideList()
@@ -234,14 +242,17 @@ fun SportsScreen() {
         if (rows.isEmpty()) return
         val currentIndex = rows.indexOfFirst { it.id == selectedId }
         val next = if (currentIndex < 0) 0 else (currentIndex + delta).coerceIn(rows.indices)
-        candidateIndex = viewModel.preferredIndexFor(rows[next].id)
+        val maxIndex = rows[next].candidates.size - 1
+        candidateIndex = viewModel.preferredIndexFor(rows[next].id).coerceIn(0, maxIndex.coerceAtLeast(0))
         failAttempts = 0
         selectedId = rows[next].id
         hideList()
     }
 
-    // Secilen adayi oynat.
-    LaunchedEffect(currentChannel?.id, candidateIndex) {
+    // Secilen adayi oynat. Anahtar adayin KENDISIDIR (id/indeks degil): kaynak
+    // cipi degistiginde ayni kanalin aday listesi daralir/genisler ve oynatma
+    // yeni kapsamdaki adayla guncellenir.
+    LaunchedEffect(candidate?.url) {
         handle.play(candidate?.url, candidate?.headers.orEmpty())
     }
 
