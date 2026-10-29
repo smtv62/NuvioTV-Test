@@ -75,6 +75,16 @@ class SportsRepository @Inject constructor(
                 name = "SLCK",
                 url = "https://raw.githubusercontent.com/smtv62/slck/refs/heads/main/5.m3u",
             ),
+            SportsSource(
+                id = "kral",
+                name = "KralBozguncu",
+                url = "https://raw.githubusercontent.com/smtv62/kralbozguncu/main/kral.m3u",
+            ),
+            SportsSource(
+                id = "golvar",
+                name = "Golvar",
+                url = "https://raw.githubusercontent.com/smtv62/golvar/main/golvar.m3u",
+            ),
         )
 
         private const val CACHE_DIR = "sports"
