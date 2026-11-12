@@ -80,11 +80,6 @@ class SportsRepository @Inject constructor(
                 name = "KralBozguncu",
                 url = "https://raw.githubusercontent.com/smtv62/kralbozguncu/main/kral.m3u",
             ),
-            SportsSource(
-                id = "golvar",
-                name = "Golvar",
-                url = "https://raw.githubusercontent.com/smtv62/golvar/main/golvar.m3u",
-            ),
         )
 
         private const val CACHE_DIR = "sports"
@@ -140,7 +135,14 @@ class SportsRepository @Inject constructor(
                                 cacheFile(source.id).parentFile?.mkdirs()
                                 cacheFile(source.id).writeText(body, Charsets.UTF_8)
                             }
-                            M3uParser.parse(body)
+                            val parsedEntries = M3uParser.parse(body)
+                            android.util.Log.i(
+                                "SportsRepo",
+                                "fetch ${source.id}: raw=${raw.length}B body=${body.length}B " +
+                                    "satirSayisi=${body.lines().size} parse=${parsedEntries.size} " +
+                                    "adlar=${parsedEntries.joinToString("|") { it.name }}",
+                            )
+                            parsedEntries
                         }
                     }
                     source to outcome
