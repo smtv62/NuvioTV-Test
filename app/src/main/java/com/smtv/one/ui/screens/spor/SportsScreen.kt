@@ -83,6 +83,7 @@ import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Text
 import coil3.compose.AsyncImage
 import com.smtv.one.R
+import com.smtv.one.data.repository.StreamResolver
 import com.smtv.one.domain.model.SportsCandidate
 import com.smtv.one.domain.model.SportsChannel
 import com.smtv.one.ui.screens.livetv.LiveTvPlayerHandle
@@ -253,7 +254,16 @@ fun SportsScreen() {
     // cipi degistiginde ayni kanalin aday listesi daralir/genisler ve oynatma
     // yeni kapsamdaki adayla guncellenir.
     LaunchedEffect(candidate?.url) {
-        handle.play(candidate?.url, candidate?.headers.orEmpty())
+        val url = candidate?.url
+        // Vavoo (geil.to) ve NTV Stream (cdnlivetv.tv) adaylari dogrudan HLS
+        // degildir: oynatmadan once resolve edilir. Basarisizsa orijinal URL
+        // gecilir; player hatasinda adaylar mekanizmasi sonraki adaya gecer.
+        val playable = if (url != null && StreamResolver.needsResolve(url)) {
+            StreamResolver.resolve(url) ?: url
+        } else {
+            url
+        }
+        handle.play(playable, candidate?.headers.orEmpty())
     }
 
     // Aday hatasi: kisa bekleme sonrasi sonraki kaynaga gec. Kaynaklar donenici
